@@ -7,7 +7,7 @@ __pycache__/
 *.so
 # Django
 *.log
-
+logs
 static
 # Distribution / packaging
 .Python
