@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if node %}
+        <div class="card col-md-5">
+            <div class="card-header">
+                Parent Node: <code>{{ node.parent }}</code>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">State Data</h5>
+                <p class="card-text">
+                    <code>{{ node.state }}</code>
+                </p>
+                <button class="btn btn-primary btn-sm">Search next</button>
+            </div>
+            <div class="card-footer text-body-secondary">Action: {{ node.action }}</div>
+        </div>
+    {% endif %}
+{% endblock content %}

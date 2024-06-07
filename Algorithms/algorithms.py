@@ -149,5 +149,67 @@ class SortedArray:
         return [start, end]
 
 
+'''
+Given an array of integers arr and and integer k, Find the kth (position in array)
+largest element where 1<= K <= |arr|
+'''
+
+
+class LargestElementInArray:
+
+    def __init__(self):
+        self.arr = [14, 8, 2, 9, 3, 77, 24, 64, 24, 64, 31, 11, 35, 56, 88, 94, 94, 33, 24, 53, 1, 64, 64, 56, 14, 3, 5,
+                    63]
+        self.k = 7
+
+    def using_max_and_forloop(self):
+        '''
+        Time Complexity\n
+        * n unit of time is used in returning finding max of array
+        * Also n unit of time is spent on removing max from list
+        * The for loop is repeated K-1
+        * Finally n unit of time is spent in finding max in array
+        - Hence, T(n) = (k - 1) * 2n + n
+                        = 2kn-n which is o(kn)
+        '''
+        for i in range(self.k - 1):
+            self.arr.remove(max(self.arr))
+        return max(self.arr)
+
+    def using_sorting(self):
+        """
+        Time complexity
+        - In sorting time complexity is O(n log n)
+        - and accessing kth element we spent O( 1 )
+        - Therefore T(n) = O(n log n) + O( 1 ) = O(n log n)
+        """
+        self.arr.sort()
+        return [len(self.arr) - self.k]
+
+    def using_heapq(self):
+
+        """
+        Description
+
+        Time complexity
+        - n unit of time for rearranging array
+        - n unit of time for heapify array
+        - for loop runs for k - 1 times multiply ...
+        - by heappop which runs for log n to extract and lastly,
+        - log n unit of time to extract
+        - T(n) = 2n+(k-1)*log n + log n = 2n + k log n which is O(n + k log n)
+        - Best case since there is no multiplication of k and n
+        """
+        import heapq
+        arr = [-element for element in self.arr]
+        heapq.heapify(arr)
+        for i in range(self.k - 1):
+            heapq.heappop(arr)
+        return -heapq.heappop(arr)
+
+
 if __name__ == "__main__":
-    print(SortedArray().using_binary_search())
+    # print(SortedArray().using_binary_search())
+    # print(LargestElementInArray().using_max_and_forloop())
+    visited = [False] * (max([1, 8, 2, 3]) + 1)
+    print(visited)
